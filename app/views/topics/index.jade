@@ -1,0 +1,14 @@
+extends ../layout
+
+block main
+  h1= title
+
+block content
+  - if (topics.length)
+    - each topic in topics
+      .article
+        h3
+          a(href='/topics/'+topic.id, title=topic.id) #{topic.id}
+  - else
+    h4 No articles.&nbsp;
+      a(href="/topics/new") create one

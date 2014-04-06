@@ -9,9 +9,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes');
-var users = require('./routes/user');
 
+var nano = require('nano')('http://localhost:5984');
 var app = express();
 
 // view engine setup
@@ -25,9 +24,6 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
-
-app.get('/', routes.index);
-app.get('/users', users.list);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -60,8 +56,21 @@ app.use(function(err, req, res, next) {
 
 app.set('port', process.env.PORT || 3000);
 
+
+require('./config/routes')(app)
+
+nano.db.create('notable', function (err, body) {
+	if (!err) {
+		console.log('notable database created');
+	}
+	else {
+		console.log('notable database already existed');
+	}
+});
+
+
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
 
-module.exports = app;
+module.exports = app
