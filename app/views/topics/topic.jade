@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+	h3= topic.title
+
+	- if (articles.length)
+	- each article in articles
+		.article
+			h3
+				a(href='/topics/'+topic._id+'/articles/'+article._id, title=article.value.Title) #{article.value.Title}
+	- else
+		h4 No articles.&nbsp;
+			a(href="/articles/new") create one

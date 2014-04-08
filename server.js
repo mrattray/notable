@@ -67,7 +67,43 @@ nano.db.create('notable', function (err, body) {
 		console.log('notable database already existed');
 	}
 });
-
+var notable = nano.use('notable');
+notable.insert(
+	{ "views": 
+		{ "topics": { 
+			"map": function(doc) {   
+				if (doc.type == 'topic') {
+					emit(doc._id, {Title: doc.title, Description: doc.description});
+				}
+			}
+		} 
+	}
+	}, '_design/topics', function (err, res) {
+	if (!err) {
+		console.log("added design document");
+	}
+	else {
+		console.log("design document already exists.");
+	}
+  });
+notable.insert(
+	{ "views": 
+		{ "articles": { 
+			"map": function(doc) {   
+				if (doc.type == 'article') {
+					emit(doc.topicId, {Title: doc.title, Content: doc.content});
+				}
+			}
+		} 
+	}
+	}, '_design/articles', function (err, res) {
+	if (!err) {
+		console.log("added design document");
+	}
+	else {
+		console.log("design document already exists.");
+	}
+  });
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
