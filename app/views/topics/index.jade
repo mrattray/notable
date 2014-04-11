@@ -1,11 +1,12 @@
 extends ../layout
 
 block content
-	- if (topics.length)
+	- if (topics.length)	
 	- each topic in topics
-		.article
+		.topic
 			h3
-				a(href='/topics/'+topic.id, title=topic.id) #{topic.id}
+				a(href='/topics/'+topic.id, title=topic.value.Title) #{topic.value.Title}
 	- else
 		h4 No articles.&nbsp;
-			a(href="/topics/new") create one
+	h3
+		a(href="/topics/add") create new topic

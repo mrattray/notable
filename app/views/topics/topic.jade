@@ -8,6 +8,7 @@ block content
 		.article
 			h3
 				a(href='/topics/'+topic._id+'/articles/'+article._id, title=article.value.Title) #{article.value.Title}
+				span (#{article.value.DateStamp})
 	- else
 		h4 No articles.&nbsp;
 			a(href="/articles/new") create one

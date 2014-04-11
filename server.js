@@ -9,8 +9,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
-var nano = require('nano')('http://localhost:5984');
+var config = require('./config/config.js');
+var nano = require('nano')(config.database.db);
 var app = express();
 
 // view engine setup
@@ -54,20 +54,21 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || config.node.port);
 
+require('./config/routes')(app);
 
-require('./config/routes')(app)
-
-nano.db.create('notable', function (err, body) {
-	if (!err) {
-		console.log('notable database created');
+nano.db.get(config.database.name, function (err, body) {
+	if (err) {
+		nano.db.create('notable');
 	}
 	else {
 		console.log('notable database already existed');
 	}
 });
-var notable = nano.use('notable');
+
+var notable = nano.use(config.database.name);
+
 notable.insert(
 	{ "views": 
 		{ "topics": { 
@@ -91,10 +92,10 @@ notable.insert(
 		{ "articles": { 
 			"map": function(doc) {   
 				if (doc.type == 'article') {
-					emit(doc.topicId, {Title: doc.title, Content: doc.content});
+					emit(doc.topicId, {Title: doc.title, Content: doc.content, DateStamp: doc.datestamp});
 				}
 			}
-		} 
+		}
 	}
 	}, '_design/articles', function (err, res) {
 	if (!err) {
@@ -109,4 +110,4 @@ var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
 
-module.exports = app
+module.exports = app;

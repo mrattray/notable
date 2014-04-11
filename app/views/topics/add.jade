@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+    label(for='title') Title:
+    input(type='text', name='title', id='title')
+    label(for='description') Description:
+    input(type='text', name='description', id='description')
+    input(type='submit', name='submit', value='Create' id='createTopic')
+    script(src='/javascripts/topic.js')
