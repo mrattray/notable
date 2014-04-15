@@ -16,9 +16,10 @@ module.exports = function (app) {
   app.get('/topics/add', topics.add);
   app.get('/topics/:topicId', topics.get);
   app.post('/topics/create', topics.create);
-  /*app.get('/topics/:topicId/articles/:articleId', articles.show);
-  app.post('/topics/:topicId/new', articles.create);
-  app.get('/topics/:topicId/edit', topic.edit);
+  app.get('/topics/:topicId/articles/add', articles.add);
+  app.post('/topics/:topicId/articles/create', articles.create);
+  app.get('/topics/:topicId/articles/:articleId', articles.get);
+  /*app.get('/topics/:topicId/edit', topic.edit);
   app.put('/topics/:topicId', topic.update);
   app.del('/topics/:topicId', topic.destroy);*/
   
