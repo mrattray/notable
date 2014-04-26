@@ -40,3 +40,33 @@ exports.get = function(req, res) {
 		});
 };
 
+exports.edit = function(req, res) {
+	var topId = req.params.topicId;
+	notable.getDocument(topId).then(function(topic){
+		res.render('topics/add', {
+			title: 'Edit ' + topic.title,
+			topic: topic
+		});
+	});
+};
+
+exports.update = function(req, res) {
+	var doc = {
+		id : req.params.topicId,
+		title : req.body.title,
+		description : req.body.description,
+		type : "topic"
+	};
+	notable.updateDocument(doc).then(function(id) {
+		res.write(JSON.stringify({ "id" : id }));
+		res.end();
+	});
+};
+
+exports.destroy = function(req, res) {
+	var id = req.params.topicId;
+	notable.deleteDocument(id).then(function(){
+		res.end();
+	});
+};
+

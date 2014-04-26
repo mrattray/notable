@@ -2,8 +2,8 @@ extends ../layout
 
 block content
     label(for='title') Title:
-    input(type='text', name='title', id='title')
+    input(type='text', name='title', id='title' value=(topic && topic._id ? '#{topic.title}' : ''))
     label(for='description') Description:
-    input(type='text', name='description', id='description')
-    input(type='submit', name='submit', value='Create' id='createTopic')
+    input(type='text', name='description', id='description' value=(topic && topic._id ? '#{topic.description}' : ''))
+    input(type='submit', name='submit', value=(topic && topic._id ? 'Update' : 'Create') id=(topic && topic._id ? 'updateTopic' : 'createTopic'))
     script(src='/javascripts/topic.js')

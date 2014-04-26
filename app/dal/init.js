@@ -17,7 +17,7 @@ notable.insert(
 		{ "topics": { 
 			"map": function(doc) {   
 				if (doc.type == 'topic') {
-					emit(doc._id, {Title: doc.title, Description: doc.description});
+					emit(doc._id, {Title: doc.title, Description: doc.description, Revision: doc._rev});
 				}
 			}
 		} 
@@ -35,7 +35,7 @@ notable.insert(
 		{ "articles": { 
 			"map": function(doc) {   
 				if (doc.type == 'article') {
-					emit(doc.topicId, {Title: doc.title, Content: doc.content, TimeStamp: doc.timestamp});
+					emit(doc.topicId, {Title: doc.title, Content: doc.content, TimeStamp: doc.timestamp, Revision: doc._rev});
 				}
 			}
 		}

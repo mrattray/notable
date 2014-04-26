@@ -28,7 +28,48 @@ exports.addDocument = function(doc) {
 		}
 	});
 	return deferred.promise;
-}
+};
+
+exports.updateDocument = function(obj) {
+	var deferred = q.defer();
+	notable.get(obj.id, { revs_info: true }, function (error, existing) { 
+		if(!error) {
+			obj._rev = existing._rev;
+			notable.insert(obj, obj.id, function(error, body) {
+				if (error) {
+					deferred.reject(new Error(error));
+				}
+				else {
+					deferred.resolve(body.id);
+				}
+			});
+		}
+		else {
+			deferred.reject(new Error(err));
+		}
+	});
+	return deferred.promise;
+};
+
+exports.deleteDocument = function(key){
+	var deferred = q.defer();
+	notable.get(key, { revs_info: true }, function (err, body){
+		if (!err) {
+			notable.destroy(key, body._rev, function(err, body) {
+				if (err) {
+					deferred.reject(new Error(err));
+				}
+				else {				
+					deferred.resolve();
+				}
+			});
+		}
+		else {
+			deferred.reject(new Error(err));
+		}
+	});
+	return deferred.promise;
+};
 
 exports.viewDesignDocument = function(designName, viewName, id) {
 	var deferred = q.defer();

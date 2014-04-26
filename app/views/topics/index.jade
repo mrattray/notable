@@ -6,6 +6,8 @@ block content
 		.topic
 			h3
 				a(href='/topics/'+topic.id, title=topic.value.Title) #{topic.value.Title}
+				a(href='/topics/'+topic.id+'/edit') edit
+				a(href='/topics/'+topic.id+'/delete') delete
 	- else
 		h4 No articles.&nbsp;
 	h3

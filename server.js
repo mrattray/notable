@@ -60,7 +60,7 @@ require('./config/routes')(app);
 require('./app/dal/init');
 
 var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+  debug('Express server listening on port ' + app.get('port'));
 });
 
 module.exports = app;
