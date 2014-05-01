@@ -1,8 +1,68 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body
+{
+	margin-top: 25px;
+	margin-left: 25px;
 }
 
 a {
-  color: #00B7FF;
+    font-size: 13px;
+    text-decoration: none;
+    color: #666666;
 }
+
+a:hover {
+    color: #999999;
+}
+
+span {
+	font-size: 13px;
+	color: #999999;
+}
+
+.Home {
+    margin-bottom: 20px;
+}
+
+.Topic {
+	background-color: #E1E4E6;
+	width: 99%;
+	height: 30px;
+	margin: 5px;
+}
+
+.TopicTitle, .ArticleTitle {
+	float:left;
+	height: 100%;
+	padding: 0 10px 0 25px;
+}
+
+.TopicEdit, .TopicDelete {
+	float: right;
+	height: 100%;
+	width: 50px;
+	padding: 0 10px 0 10px;
+	text-align: center;
+}
+
+.Article {
+    background-color: #D1D1FF;
+    width: 99%;
+    height: 30px;
+    margin: 5px;
+}
+
+.ArticleDate {
+	
+    float:left;
+    height: 100%;
+    padding: 0 10px 0 25px;
+}
+
+.Title {
+	color: #333333;
+}
+
+.Input input {
+	width: 99%;
+}
+

@@ -1,9 +1,14 @@
 extends ../layout
 
 block content
-    label(for='title') Title:
-    input(type='text', name='title', id='title')
-    label(for='content') Content:
-    input(type='text', name='content', id='content')
-    input(type='submit', name='submit', value='Create' id='createArticle')
+    .Label
+        label(for='title') Title:
+    .Input
+        input(type='text', name='title', id='title')
+    .Label
+        label(for='content') Content:
+    .Input
+        input(type='text', name='content', id='content')
+    .Button
+        input(type='submit', name='submit', value='Create' id='createArticle')
     script(src='/javascripts/article.js')

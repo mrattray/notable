@@ -1,14 +1,17 @@
 extends ../layout
 
 block content
-	- if (topics.length)	
-	- each topic in topics
-		.topic
-			h3
-				a(href='/topics/'+topic.id, title=topic.value.Title) #{topic.value.Title}
-				a(href='/topics/'+topic.id+'/edit') edit
-				a(href='/topics/'+topic.id+'/delete') delete
-	- else
-		h4 No articles.&nbsp;
-	h3
-		a(href="/topics/add") create new topic
+    - if (topics.length)	
+    - each topic in topics
+        .Topic
+            .TopicTitle
+                a(href='/topics/'+topic.id, title=topic.value.Title) #{topic.value.Title}
+            .TopicDelete
+                a(href='/topics/'+topic.id+'/delete') delete
+            .TopicEdit
+                a(href='/topics/'+topic.id+'/edit') edit
+    - else
+        .NoTopics
+            No articles.&nbsp;
+    .Create
+        a(href="/topics/add") add

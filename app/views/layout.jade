@@ -2,8 +2,10 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/jquery-2.1.0.min.js')
   body
-    a(href="/") Home
+    .Home
+        a(href="/") Home
     block content

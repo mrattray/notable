@@ -1,15 +1,17 @@
 extends ../layout
 
 block content
-    h3= topic.title
+    .Title #{topic.title}
 
     - if (articles.length)
     - each article in articles
-        .article
-            h3
+        .Article
+            .ArticleTitle
                 a(href='/topics/'+topic._id+'/articles/'+article.id, title=article.value.Title) #{article.value.Title}
+            .ArticleDate
                 span (#{article.value.TimeStamp})
     - else
-        h4 No articles.&nbsp;
-    h3
-        a(href="/topics/" + topic._id + "/articles/add") create one
+        .NoArticles
+            No articles.&nbsp;
+    .Create
+        a(href="/topics/" + topic._id + "/articles/add") add
