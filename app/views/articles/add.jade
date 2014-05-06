@@ -1,14 +1,24 @@
 extends ../layout
 
 block content
+    .Home
+        a(href="/") Home&nbsp;/&nbsp;
+        a(href="/topics/" + (article && article._id ? '#{article.topicId}' : '')) Topic
     .Label
         label(for='title') Title:
     .Input
-        input(type='text', name='title', id='title')
+        input(type='text', name='title', id='title' value=(article && article._id ? '#{article.title}' : ''))
     .Label
         label(for='content') Content:
     .Input
-        input(type='text', name='content', id='content')
+        input(type='text', name='content', id='content' value=(article && article._id ? '#{article.content}' : ''))
+    - if (article && article._id)
+        .Label
+            label(for='datestamp') Timestamp:
+        .Input
+            input(type='text', name='timestamp', id='timestamp' value='#{article.timestamp}')
+        input(type='hidden', name='topicId', id='topicId', value='#{article.topicId}')
     .Button
-        input(type='submit', name='submit', value='Create' id='createArticle')
+        input(type='submit', name='submit', value=(article && article._id ? 'Update' : 'Create') id=(article && article._id ? 'updateArticle' : 'createArticle'))
+
     script(src='/javascripts/article.js')

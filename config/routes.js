@@ -21,10 +21,10 @@ module.exports = function (app) {
   app.get('/topics/:topicId/delete', topics.destroy);
   app.get('/topics/:topicId/articles/add', articles.add);
   app.post('/topics/:topicId/articles/create', articles.create);
-  app.get('/topics/:topicId/articles/:articleId', articles.get);
-  /*app.get('/topics/:topicId/edit', topic.edit);
-  app.put('/topics/:topicId', topic.update);
-  app.del('/topics/:topicId', topic.destroy);*/
+  app.get('/articles/:articleId', articles.get);
+  app.get('/articles/:articleId/edit', articles.edit);
+  app.post('/articles/:articleId/update', articles.update);
+  app.get('/articles/:articleId/delete', articles.destroy);
 	  
   // home route
   app.get('/', topics.index);

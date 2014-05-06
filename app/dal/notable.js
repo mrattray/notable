@@ -32,10 +32,10 @@ exports.addDocument = function(doc) {
 
 exports.updateDocument = function(obj) {
 	var deferred = q.defer();
-	notable.get(obj.id, { revs_info: true }, function (error, existing) { 
+	notable.get(obj._id, { revs_info: true }, function (error, existing) { 
 		if(!error) {
 			obj._rev = existing._rev;
-			notable.insert(obj, obj.id, function(error, body) {
+			notable.insert(obj, obj._id, function(error, body) {
 				if (error) {
 					deferred.reject(new Error(error));
 				}

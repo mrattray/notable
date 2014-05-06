@@ -52,7 +52,7 @@ exports.edit = function(req, res) {
 
 exports.update = function(req, res) {
 	var doc = {
-		id : req.params.topicId,
+		_id : req.params.topicId,
 		title : req.body.title,
 		description : req.body.description,
 		type : "topic"

@@ -1,6 +1,8 @@
 extends ../layout
 
 block content
+    .Home
+        a(href="/") Home
     .Title #{topic.title}
 
     - if (articles.length)
@@ -10,8 +12,11 @@ block content
                 a(href='/topics/'+topic._id+'/articles/'+article.id, title=article.value.Title) #{article.value.Title}
             .ArticleDate
                 span (#{article.value.TimeStamp})
+            .ArticleDelete
+                a(href='/articles/' + article.id +'/delete') delete
+            .ArticleEdit
+                a(href='/articles/' + article.id +'/edit') edit
     - else
-        .NoArticles
-            No articles.&nbsp;
+        .NoArticles No articles.&nbsp;
     .Create
         a(href="/topics/" + topic._id + "/articles/add") add

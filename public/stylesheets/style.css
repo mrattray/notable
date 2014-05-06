@@ -36,7 +36,7 @@ span {
 	padding: 0 10px 0 25px;
 }
 
-.TopicEdit, .TopicDelete {
+.TopicEdit, .TopicDelete, .ArticleEdit, .ArticleDelete {
 	float: right;
 	height: 100%;
 	width: 50px;
