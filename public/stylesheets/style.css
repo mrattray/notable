@@ -30,7 +30,7 @@ span {
 	margin: 5px;
 }
 
-.TopicTitle, .ArticleTitle {
+.TopicTitle, .ArticleListTitle {
 	float:left;
 	height: 100%;
 	padding: 0 10px 0 25px;
@@ -52,10 +52,18 @@ span {
 }
 
 .ArticleDate {
-	
     float:left;
     height: 100%;
     padding: 0 10px 0 25px;
+}
+
+.ArticleTitle {
+    padding: 0 10px 0 25px;
+	
+}
+
+.ArticleContent {
+    padding: 20px 10px 0 25px;
 }
 
 .Title {

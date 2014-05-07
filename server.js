@@ -9,7 +9,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config/config.js');
-
+var moment = require('moment');
 var app = express();
 
 // view engine setup
@@ -52,6 +52,11 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+app.locals.formatDate = function(date)
+{
+    return moment(date).format("MMM DD YYYY");
+}
 
 app.set('port', process.env.PORT || config.node.port);
 
