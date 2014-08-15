@@ -35,7 +35,7 @@ notable.insert(
 		{ "articles": { 
 			"map": function(doc) {   
 				if (doc.type == 'article') {
-					emit(doc.topicId, {Title: doc.title, Content: doc.content, TimeStamp: doc.timestamp, Revision: doc._rev});
+					emit([doc.topicId, doc.timestamp], {Title: doc.title, Content: doc.content, TimeStamp: doc.timestamp, Revision: doc._rev});
 				}
 			}
 		}

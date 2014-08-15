@@ -75,7 +75,7 @@ exports.viewDesignDocument = function(designName, viewName, id) {
 	var deferred = q.defer();
 	var param = {};
 	if (id) {
-		param = {key : id};
+		param = {descending: true, endkey : [id], startkey : [id,{}]};
 	}
 	notable.view(designName, viewName, param, function(err, body) {
 		if (err){
